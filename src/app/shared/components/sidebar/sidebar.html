@@ -1,0 +1,32 @@
+<div id="sidebar" class="sidebar" [class.open]="isOpen">
+  <div>
+    <div class="logo">
+      <div class="contener-logo-without-title">
+        <img src="https://drive.google.com/thumbnail?id=1Xj3VzUaWTCeys9TFWxcbBfubT8oB_3-c&sz=s1000" class="logo logo-without-title" alt="شعار المسجد">
+      </div>
+      <span>مسجد الفرقان</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      @for (item of navItems; track item.route) {
+        <button 
+          class="sidebar-item" 
+          [routerLink]="item.route" 
+          [queryParams]="{ user: userId }"
+          routerLinkActive="active" 
+          (click)="closeSidebar()">
+          <i [class]="item.icon + ' ms-1'"></i> {{ item.label }}
+        </button>
+      }
+    </nav>
+  </div>
+
+  <div class="sidebar-footer">
+    <hr>
+    <button class="sidebar-item w-100" (click)="logout()">
+      <i class="bi bi-box-arrow-right ms-1"></i> تسجيل الخروج
+    </button>
+  </div>
+</div>
+
+<div id="sidebarShadow" class="sidebar-shadow" [class.show]="isOpen" (click)="closeSidebar()"></div>

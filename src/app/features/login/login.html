@@ -1,0 +1,20 @@
+<div class="d-flex align-items-center justify-content-center" style="height: 100dvh;">
+    <div class="login-card">
+      <img class="login-logo" src="https://drive.google.com/thumbnail?id=1Xj3VzUaWTCeys9TFWxcbBfubT8oB_3-c&sz=s1000" alt="شعار عالم الفرقان">
+      
+      <h2 class="title">أهلاً وسهلاً بكِ</h2>
+      <h3 class="title2">نحو سموٍّ علمي وروحي يليق بكِ</h3>
+      
+      <div class="instruction-box">
+        <i class="pi pi-info-circle me-1" style="color: var(--main-color);"></i>
+        ادخلي رقمك الفرقاني بشكل صحيح لتحصلي على النتيجة المطابقة لحسابك.
+      </div>
+    
+      <div class="input-group-custom">
+        <i class="pi pi-id-card"></i>
+        <input type="text" [(ngModel)]="farqaniId" placeholder="أدخلي الرقم الفرقاني هنا..." autocomplete="off">
+      </div>
+    
+      <p-button label="تسجيل الدخول" styleClass="btn-submit w-100" [loading]="isLoading" (onClick)="submitLogin()"></p-button>
+    </div>
+</div>

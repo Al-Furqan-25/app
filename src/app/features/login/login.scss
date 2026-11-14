@@ -1,0 +1,125 @@
+.login-card {
+        background: #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 4px 8px 0 rgb(212 167 44 / 12%), 0 6px 20px 0 rgb(212 167 44 / 13%);
+        /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+        padding: 40px 30px;
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+        border: 1px solid rgba(212, 167, 44, 0.15);
+      }
+
+      .login-logo {
+        width: 110px;
+        height: auto;
+        margin-bottom: 20px;
+        /* border-radius: 50%; */
+        /* box-shadow: 0 4px 10px rgba(0,0,0,0.05); */
+      }
+
+      .title {
+        color: var(--main-color);
+        font-weight: 800;
+        font-size: 1.6rem;
+        margin-bottom: 5px;
+      }
+
+      .title2 {
+        color: #777;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 25px;
+      }
+
+      .instruction-box {
+        background: #fffbf0;
+        border-right: 4px solid var(--main-color);
+        padding: 12px 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 25px;
+        text-align: right;
+        line-height: 1.5;
+      }
+
+      /* تصميم حقل الإدخال مع إصلاح الأيقونة */
+      .input-group-custom {
+        position: relative;
+        margin-bottom: 25px;
+      }
+
+      .input-group-custom i {
+        position: absolute;
+        right: 18px; /* تثبيت الأيقونة على اليمين */
+        top: 50%;
+        transform: translateY(-50%); /* هذا السطر يضمن بقاء الأيقونة في المنتصف تماماً في الجوال واللابتوب */
+        color: var(--main-color);
+        font-size: 1.3rem;
+        pointer-events: none; /* لمنع الأيقونة من إعاقة النقر */
+      }
+
+      .input-group-custom input {
+        width: 100%;
+        padding: 14px 45px 14px 15px; /* إعطاء مساحة للأيقونة على اليمين */
+        border: 2px solid #eee;
+        border-radius: 14px;
+        font-family: inherit;
+        font-size: 1rem;
+        color: var(--text-dark);
+        background: #fafafa;
+        transition: all 0.3s ease;
+      }
+
+      .input-group-custom input::placeholder {
+        color: #aaa;
+        font-size: 0.95rem;
+      }
+
+      .input-group-custom input:focus {
+        border-color: var(--main-color);
+        background: #ffffff;
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(212, 167, 44, 0.15);
+      }
+
+      /* زر الدخول */
+      .btn-submit {
+        background-image: linear-gradient(to right, #d09e3b, #f5d256, #d09e3b);
+        background-size: 200%;
+        color: #fff;
+        border: none;
+        width: 100%;
+        padding: 14px;
+        border-radius: 20px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(212, 167, 44, 0.2);
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(212, 167, 44, 0.4);
+        color: #fff;
+      }
+
+      .btn-submit:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* مؤشر التحميل */
+      #loadingSpinner {
+        display: none;
+        margin-top: 15px;
+        color: var(--main-color);
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+      .fa-spinner {
+        font-size: 1.2rem;
+      }

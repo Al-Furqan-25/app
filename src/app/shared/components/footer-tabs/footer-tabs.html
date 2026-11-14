@@ -1,0 +1,13 @@
+<nav class="footer-tabs">
+  @for (item of footerItems; track item.route) {
+    <button 
+      [routerLink]="item.route" 
+      [queryParams]="{ user: userId }" 
+      routerLinkActive="active">
+      <span>
+        <i class="bi" [class]="isActive(item.route) ? item.icon + '-fill' : item.icon"></i>
+      </span>
+      <span class="d-block" style="font-size: 0.7rem; font-weight: 700;">{{ item.label }}</span>
+    </button>
+  }
+</nav>

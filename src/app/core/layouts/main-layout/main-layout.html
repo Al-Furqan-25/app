@@ -1,0 +1,16 @@
+<!-- الهيدر العلوي -->
+<app-header [pageTitle]="currentTitle" (onToggleSidebar)="toggleSidebar()"></app-header>
+
+<!-- حاوية التطبيق الرئيسية -->
+<div class="app-container">
+  <!-- القائمة الجانبية -->
+  <app-sidebar [isOpen]="isSidebarOpen" (close)="isSidebarOpen = false"></app-sidebar>
+
+  <!-- محتوى الصفحات الديناميكي -->
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<!-- شريط التنقل السفلي للهواتف -->
+<app-footer-tabs></app-footer-tabs>
