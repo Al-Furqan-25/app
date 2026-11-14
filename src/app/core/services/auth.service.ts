@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 class AuthService {
+  private router = inject(Router);
+  
   // جلب معرف المستخدم من الـ localStorage
   getUserId(): string {
     return localStorage.getItem('USER_ID') || 'guest';
@@ -72,7 +75,7 @@ class AuthService {
 
   logout() {
     localStorage.clear();
-    window.location.href = '/login';
+    this.router.navigate(['/login']);
   }
 }
 export { AuthService };

@@ -20,7 +20,6 @@ export class Sidebar {
   navItems = this.authService.getNavigationItems();
 
   navigate(page: string) {
-    // التوجيه الديناميكي مع تمرير معرف المستخدم إذا لزم
     this.router.navigate([page], { queryParams: { user: this.userId } });
     this.close.emit();
   }

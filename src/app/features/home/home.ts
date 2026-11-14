@@ -29,7 +29,8 @@ export class Home {
 
   goToLogin() {
     if (this.userRole === 'teacher') {
-      this.router.navigate(['/teacher/dashboard'], { queryParams: { user: this.userId } });
+      // this.router.navigate(['/teacher/dashboard'], { queryParams: { user: this.userId } });
+      this.router.navigate(['/teacher/daily-harvest'], { queryParams: { user: this.userId } });
     } else if (this.userRole === 'admin') {
       this.router.navigate(['/admin/dashboard']);
     } else {
