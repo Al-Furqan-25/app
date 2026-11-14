@@ -9,12 +9,12 @@ class AuthService {
   
   // جلب معرف المستخدم من الـ localStorage
   getUserId(): string {
-    return localStorage.getItem('USER_ID') || 'guest';
+    return localStorage.getItem('USER_ID') || '';
   }
 
   // جلب دور المستخدم أو صلاحياته لتغيير محتوى القوائم
   getUserRole(): string {
-    return localStorage.getItem('user_role') || 'teacher';
+    return localStorage.getItem('user_role') || '';
   }
 
   getNavigationItems() {
