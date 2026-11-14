@@ -30,14 +30,12 @@
               }
             ],
             "styles": [
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "src/styles.css"
+              "src/styles.scss"
             ]
           },
           "configurations": {
             "production": {
+              "baseHref": "/app/",
               "budgets": [
                 {
                   "type": "initial",
@@ -74,6 +72,9 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
