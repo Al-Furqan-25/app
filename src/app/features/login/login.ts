@@ -36,23 +36,57 @@ export class Login {
             return;
           }
 
-          if (idValue.includes('Fu') || idValue.includes('Fl') || idValue.includes('Ft')) {
+          // if (idValue.includes('Fu') || idValue.includes('Fl') || idValue.includes('Ft')) {
             
-            this.api.getTeacherById(idValue).subscribe((teacher: any) => {
-              if (teacher) {
-                localStorage.setItem("user_role", "teacher");
-                localStorage.setItem("USER_ID", teacher.id);
-                localStorage.setItem("USER_NAME", teacher.name);
-                localStorage.setItem("teacherCategory", teacher.category);
-                // this.router.navigate(['/teacher/dashboard'], { queryParams: { id: idValue } });
-                this.router.navigate(['/teacher/daily-harvest'], { queryParams: { id: idValue } });
-              } else {
-                this.router.navigate(['/student-dashboard'], { queryParams: { id: idValue } });
-              }
-            });
-          } else {
-            this.router.navigate(['/student-dashboard'], { queryParams: { id: idValue } });
-          }
+          //   this.api.getTeacherById(idValue).subscribe((teacher: any) => {
+          //     if (teacher) {
+          //       localStorage.setItem("user_role", "teacher");
+          //       localStorage.setItem("USER_ID", teacher.id);
+          //       localStorage.setItem("USER_NAME", teacher.name);
+          //       localStorage.setItem("USER_CATEGORY", teacher.category);
+          //       // this.router.navigate(['/teacher/dashboard'], { queryParams: { id: idValue } });
+          //       this.router.navigate(['/teacher/daily-harvest'], { queryParams: { id: idValue } });
+          //     } else {
+          //       this.router.navigate(['/student-dashboard'], { queryParams: { id: idValue } });
+          //     }
+          //   });
+          // } else {
+          //   this.router.navigate(['/student-dashboard'], { queryParams: { id: idValue } });
+          // }
+
+          this.api.getUserDataById(idValue).subscribe((user: any) => {
+            if (user.role === 'مساعدة' && user.sharedWith === 'معسكر همة - مساعدات') {
+              localStorage.setItem("user_role", "teacher");
+              localStorage.setItem("USER_ID", user.id);
+              localStorage.setItem("USER_NAME", user.name);
+              localStorage.setItem("USER_CATEGORY", user.category);
+              // this.router.navigate(['/teacher/dashboard'], { queryParams: { id: idValue } });
+              this.router.navigate(['/teacher/daily-harvest'], { queryParams: { id: idValue } });
+            } else if (user.role === 'مغتربة' && user.sharedWith === 'معسكر همة - مغتربات') {
+              localStorage.setItem("user_role", "expStn");
+              localStorage.setItem("USER_ID", user.id);
+              localStorage.setItem("USER_NAME", user.name);
+              localStorage.setItem("USER_CATEGORY", user.category);
+              // this.router.navigate(['/teacher/dashboard'], { queryParams: { id: idValue } });
+              this.router.navigate(['/expStn/daily-harvest'], { queryParams: { id: idValue } });
+            } else if ((user.role === 'ثانوي' || user.role === 'إعدادي') && user.sharedWith === 'معسكر همة - يافعات') {
+              localStorage.setItem("user_role", "yStn");
+              localStorage.setItem("USER_ID", user.id);
+              localStorage.setItem("USER_NAME", user.name);
+              localStorage.setItem("USER_CATEGORY", user.category);
+              // this.router.navigate(['/teacher/dashboard'], { queryParams: { id: idValue } });
+              this.router.navigate(['/youngStn/yDaily-harvest'], { queryParams: { id: idValue } });
+            } else if (user.role === 'جامعية' && user.sharedWith === 'معسكر') {
+              localStorage.setItem("user_role", "uStn");
+              localStorage.setItem("USER_ID", user.id);
+              localStorage.setItem("USER_NAME", user.name);
+              localStorage.setItem("USER_CATEGORY", user.category);
+              // this.router.navigate(['/teacher/dashboard'], { queryParams: { id: idValue } });
+              this.router.navigate(['/ustn/daily-harvest'], { queryParams: { id: idValue } });
+            } else {
+              this.router.navigate(['/student-dashboard'], { queryParams: { id: idValue } });
+            }
+          });
         } catch (e) {
           console.error(e);
         } finally {

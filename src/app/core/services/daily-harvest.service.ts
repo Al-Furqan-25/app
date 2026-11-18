@@ -7,8 +7,6 @@ import { ApiService } from './api.service';
 })
 export class DailyHarvestService {
   private apiService = inject(ApiService);
-
-  // ضعي رابط نشر Web App الخاص بكِ هنا
   private readonly API_URL = this.apiService.getLinkWebApp();
 
   private cachedFields: HarvestField[] | null = null;
@@ -17,7 +15,7 @@ export class DailyHarvestService {
   private async postAction<T>(action: string, payload: any): Promise<T> {
     const response = await fetch(this.API_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // يمنع طلبات Preflight OPTIONS المبطئة في GAS
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ action, payload })
     });
 
@@ -28,10 +26,10 @@ export class DailyHarvestService {
     return result.data;
   }
 
-  async getDailyHarvest(date: string, teacherId: string, forceRefresh = false) {
-    const cacheKey = `${teacherId}_${date}`;
+  // إضافة role اختيارياً للتدقيق في الـ Backend إذا لزم الأمر
+  async getDailyHarvest(date: string, userId: string, role: string = '', forceRefresh = false) {
+    const cacheKey = `${userId}_${date}`;
 
-    // إذا كانت البيانات محفوظة مسبقاً في الجلسة الحالية، نعيدها فوراً بدون انتظار الشبكة
     if (!forceRefresh && this.cachedFields && this.dailyCache.has(cacheKey)) {
       return {
         record: this.dailyCache.get(cacheKey)!,
@@ -41,7 +39,7 @@ export class DailyHarvestService {
 
     const data = await this.postAction<{ record: Record<string, any>; fields: HarvestField[] }>(
       'getDailyHarvest',
-      { date, teacherId }
+      { date, userId, role }
     );
 
     this.cachedFields = data.fields;
@@ -49,22 +47,22 @@ export class DailyHarvestService {
     return data;
   }
 
-  async getWeeklyHarvest(teacherId: string, startDate: string, endDate: string) {
+  async getWeeklyHarvest(userId: string, startDate: string, endDate: string, role: string = '') {
     return this.postAction<{ rows: Record<string, any>[]; fields: HarvestField[] }>(
       'getWeeklyHarvest',
-      { teacherId, startDate, endDate }
+      { userId, startDate, endDate, role }
     );
   }
 
   async saveDailyHarvest(payload: {
     date: string;
-    teacherId: string;
-    teacherName: string;
+    userId: string;
+    userName: string;
     values: Record<string, any>;
+    role: string;
   }) {
     const res = await this.postAction<{ saved: boolean }>('saveDailyHarvest', payload);
-    // تحديث الكاش المحلي فوراً بعد الحفظ
-    this.dailyCache.set(`${payload.teacherId}_${payload.date}`, { ...payload.values });
+    this.dailyCache.set(`${payload.userId}_${payload.date}`, { ...payload.values });
     return res;
   }
 }
