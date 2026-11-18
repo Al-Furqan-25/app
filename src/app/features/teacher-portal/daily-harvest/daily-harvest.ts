@@ -25,7 +25,7 @@ export class DailyHarvest implements OnInit{
   // بيانات المعلمة من localStorage
   teacherId = localStorage.getItem('USER_ID') || '';
   teacherName = localStorage.getItem('USER_NAME') || 'المعلمة';
-  teacherCategory = localStorage.getItem('teacherCategory') || '';
+  teacherCategory = localStorage.getItem('USER_CATEGORY') || '';
 
   // حالة الصفحة والتاريخ
   selectedDate = signal<Date>(new Date());

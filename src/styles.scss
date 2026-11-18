@@ -466,8 +466,8 @@ a:hover {
   display: block;
 }
 
-.sidebar-shadow {
-  /* display: block; */
+.sidebar-shadow.show {
+  display: block;
 }
 
 .sidebar nav {

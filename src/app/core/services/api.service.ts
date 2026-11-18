@@ -23,8 +23,24 @@ export class ApiService {
     return this.http.get(`${this.gasUrl}?action=getTeacherById&id=${id}`);
   }
 
-  getStudentById(id: string): Observable<any> {
-    return this.http.get(`${this.gasUrl}?action=getStudentById&id=${id}`);
+  // جامعيات
+  getUStudentById(id: string): Observable<any> {
+    return this.http.get(`${this.gasUrl}?action=getUStudentById&id=${id}`);
+  }
+
+  // يافعات
+  getYoungStudentById(id: string): Observable<any> {
+    return this.http.get(`${this.gasUrl}?action=getYoungStudentById&id=${id}`);
+  }
+
+  // مغتربات
+  getExpStudentById(id: string): Observable<any> {
+    return this.http.get(`${this.gasUrl}?action=getExpStudentById&id=${id}`);
+  }
+
+  // user
+  getUserDataById(id: string): Observable<any> {
+    return this.http.get(`${this.gasUrl}?action=getUserDataById&id=${id}`);
   }
 
   getPdfDetails(): Observable<any> {
